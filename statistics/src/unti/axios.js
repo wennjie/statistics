@@ -7,7 +7,7 @@ const maxios = (_this,uri,data,methods,callback) =>{
         // lock: true,
         text: '加载中',
         // spinner: 'el-icon-loading',  
-        background: 'rgba(0, 0, 0, 0.4)'
+        // background: 'rgba(0, 0, 0, 0.4)'
       });
       let config = {
         timeout:30000

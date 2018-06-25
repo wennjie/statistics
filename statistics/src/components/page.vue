@@ -113,8 +113,9 @@
   </el-table>
   <div class="botton">
      <el-pagination
-    layout="prev, pager, next"
+    layout="total, prev, pager, next, jumper"
     :total="page_info.total_records"
+    :current-page='postData.page'
     @current-change='pageChange'
     >
   </el-pagination>
@@ -196,6 +197,7 @@ export default {
       if(value.length===this.aircraftListKey.length){
         this.isIndeterminate=true
       }
+      this.postData.page=1
       
     },
     transformSN(){
@@ -203,7 +205,8 @@ export default {
       let str =sns.join('|')
       this.dialogVisible = false
       this.postData.device_sn=str
-      this.postData.page=1
+      
+
       this.getpPlatform()
     },
     // end
@@ -218,6 +221,7 @@ export default {
       }else{
         this.postData.statistic_time = `${time[0]}-${time[1]}`;
       }
+      this.postData.page=1
       
       this.getpPlatform();
     },
@@ -227,7 +231,6 @@ export default {
     },
     formatter({ work_time }) {
       if (work_time) {
-        
         return formatDuring(work_time)
       }
     },
@@ -239,13 +242,21 @@ export default {
     },
     timeChange() {
       this.postData.page = 1;
+      this.time = "";
       this.getpPlatform();
     },
+
+
+
+
     getAddress() {
       axios(this, Request.getAddress, {}, "", res => {
         this.areaDate = res;
       });
     },
+
+
+
     upTop() {
       this.$nextTick(() => {
         let dom = document.querySelector(".el-table__body-wrapper");

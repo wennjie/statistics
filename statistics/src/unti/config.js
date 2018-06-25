@@ -1,4 +1,4 @@
-const baseUri='https://devel.skylinuav.com';
+const baseUri='https://tool.skylinuav.com';
 const Request={
     getPlatform:'/v3/api/statistic/work/platform',
     getAddress :'/v3/api/address/area/cn',
